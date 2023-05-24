@@ -13,7 +13,7 @@
     }                           
 </style>
 <body>
-
+    <h1>PLAY IN THE CONSOLE! (F12)</h1>
     <div id = 'container'>              <!--grouping the buttons in the container allows to execute a single function when any button is clicked--> 
         <button name = 'rock'>ROCK</button>
         <button name = 'paper'>PAPER</button>
@@ -34,10 +34,10 @@
 
     function playMatch () {                 //assign the messages values looking at the round result
         if (plays === 4) {
+            compare()
             comScore === userScore ? result2 = 'GAME OVER! It´s a tie!':
             comScore > userScore ? result2 = 'GAME OVER! Computer wins the match' : 
             result2 = 'GAME OVER! You win the match';
-            console.log(result);
             console.log('Computer: ' + comScore);
             console.log('you: ' + userScore);
             console.log(result2);
