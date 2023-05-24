@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        background-color: black;
+        color: white;        
+    }                           
+</style>
+<body>
+
+    <div id = 'container'>              <!--grouping the buttons in the container allows to execute a single function when any button is clicked--> 
+        <button name = 'rock'>ROCK</button>
+        <button name = 'paper'>PAPER</button>
+        <button name = 'scissors'>SCISSORS</button>
+    </div>
+
+    <script>"use strict"
+    
+    //function to choose randomly an option
+    let choice;
+    let container = document.getElementById("container");       //assign the container and its content to a variable 
+    container.addEventListener('click', playMatch);             //the variable is called when an event happens, in this case, click on any button
+    let comScore = 0,
+        userScore = 0,
+        plays = 0,          //attempt counter
+        result,             //description of the choices
+        result2;            //rounds remaining or game over
+
+    function playMatch () {                 //assign the messages values looking at the round result
+        if (plays === 4) {
+            comScore === userScore ? result2 = 'GAME OVER! It´s a tie!':
+            comScore > userScore ? result2 = 'GAME OVER! Computer wins the match' : 
+            result2 = 'GAME OVER! You win the match';
+            console.log(result);
+            console.log('Computer: ' + comScore);
+            console.log('you: ' + userScore);
+            console.log(result2);
+            comScore = 0;
+            userScore = 0;
+            plays = 0;
+        } else {
+            compare()
+            plays ++;           
+            result2 = 'Plays remaining: ' + (5 - plays);
+            console.log('Computer: ' + comScore);
+            console.log('you: ' + userScore);
+            console.log(result2);
+        }
+        console.log('+++++++++++++++++++');
+       
+    }
+
+    function compare() {            //compare te choices and returns the round result
+        let playerSelection = event.target.name,
+            computerSelection = getComputerChoice();
+               
+        if (playerSelection === 'rock' && computerSelection === 'paper') {
+            result = `You lose, ${computerSelection} beats ${playerSelection}`;
+            comScore ++;
+        } else if (playerSelection === 'rock' && computerSelection === 'scissors') {
+            result = `You win, ${playerSelection} beats ${computerSelection}`;
+            userScore ++;
+        } else if (playerSelection === 'paper' && computerSelection === 'rock') {
+            result = `You win, ${playerSelection} beats ${computerSelection}`;
+            userScore ++;
+        } else if (playerSelection === 'paper' && computerSelection === 'scissors') {
+            result = `You lose, ${computerSelection} beats ${playerSelection}`;
+            comScore ++;
+        } else if (playerSelection === 'scissors' && computerSelection === 'paper') {
+            result = `You win, ${playerSelection} beats ${computerSelection}`;
+            userScore ++;
+        } else if (playerSelection === 'scissors' && computerSelection === 'rock') {
+            result = `You lose, ${computerSelection} beats ${playerSelection}`;
+            comScore ++;
+        } else {
+            result = 'Tie'
+        };
+        console.log('--------------');
+        console.log(result);
+    }
+
+    function getComputerChoice () {         //random choice between 0 and 2, assign a choice to each number
+        let rdm = Math.floor(Math.random()*3);
+        rdm === 0 ? choice = 'rock': 
+        rdm === 1 ? choice = 'paper': 
+        choice = 'scissors';
+        return (choice)
+    } 
+    
+    
+    </script>
+
+
+</body>
+</html>
