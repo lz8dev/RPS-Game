@@ -1,9 +1,64 @@
-/*window.addEventListener('DOMContentLoaded', function() {
-    const trans = document.getElementById('wText');
-    trans.classList.add('show');
-  });*/
+let hovRock = document.getElementById('dev1');
+let hovPapr = document.getElementById('dev2');
+let hovScss = document.getElementById('dev3');
 
-let count = 0;      //setting ellipsis animation
+let bomb = document.getElementById('bomb');
+let hdBomb = document.getElementById('handRock');
+let txBomb = document.getElementById('txBomb');
+let brBomb = document.getElementById('dev1');
+let shield = document.getElementById('shield');
+let hdShield = document.getElementById('handPaper');
+let txShield = document.getElementById('txShield');
+let brShield = document.getElementById('dev2');
+let ray = document.getElementById('ray');
+let hdRay= document.getElementById('handScissors');
+let txRay= document.getElementById('txRay');
+let brRay = document.getElementById('dev3');
+
+//applying hover styles
+hovRock.addEventListener('mouseenter', function() {
+    bomb.innerHTML = '<img src="img/bomb2.png" alt="bomb">';
+    hdBomb.innerHTML = '<img src="img/rock2.png" alt="rock">';
+    txBomb.style.color = '#f700ff';
+    brBomb.style.border = '8px solid #ffffff';
+});
+hovRock.addEventListener('mouseleave', function() {
+    bomb.innerHTML = '<img src="img/bomb.png" alt="bomb">';
+    hdBomb.innerHTML = '<img src="img/rock.png" alt="rock">';
+    txBomb.style.color = '#3fff00';
+    brBomb.style.border = '5px solid #3fff00';
+});
+
+hovPapr.addEventListener('mouseenter', function() {
+    shield.innerHTML = '<img src="img/shield2.png" alt="shield">';
+    hdShield.innerHTML = '<img src="img/paper2.png" alt="paper">';
+    txShield.style.color = '#f700ff';
+    brShield.style.border = '8px solid #ffffff';
+});
+hovPapr.addEventListener('mouseleave', function() {
+    shield.innerHTML = '<img src="img/shield.png" alt="shield">';
+    hdShield.innerHTML = '<img src="img/paper.png" alt="paper">';
+    txShield.style.color = '#3fff00';
+    brShield.style.border = '5px solid #3fff00';
+});
+
+hovScss.addEventListener('mouseenter', function() {
+    ray.innerHTML = '<img src="img/ray2.png" alt="ray">';
+    hdRay.innerHTML = '<img src="img/scissors2.png" alt="scissors">';
+    txRay.style.color = '#f700ff';
+    brRay.style.border = '8px solid #ffffff';
+});
+hovScss.addEventListener('mouseleave', function() {
+    ray.innerHTML = '<img src="img/ray.png" alt="ray">';
+    hdRay.innerHTML = '<img src="img/scissors.png" alt="scissors">';
+    txRay.style.color = '#3fff00';
+    brRay.style.border = '5px solid #3fff00';
+});
+
+
+
+//setting ellipsis animation
+let count = 0;      
 let intro = document.querySelector('.temporal');
 function ellipsis (){           //change the content of 'temporal' adding the dots for ellipsis
     intro.textContent = '.' + '.'.repeat(count % 4);

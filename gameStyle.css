@@ -1,93 +1,157 @@
 @import url('https://fonts.googleapis.com/css2?family=Tomorrow&display=swap');
 
-html, body {
+html, 
+body{
     margin: 0;
     background-color: black;
   }
   
 body{
     display: flex;
+    
     border: 1px dashed red;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     font-family: 'Tomorrow', sans-serif;
-    font-size: 3rem;
     color: #36FF00;
-    padding: 4rem 6rem;
+    padding: 2rem 9rem;
 }
 
+.mainTitle, 
+.selector,
+.status{
+    width: 65rem;
+    border: 4px solid #3fff00;
+    border-radius: 40px;
+    margin: .6rem;
+}
 
-
-
+.mainTitle{
+    font-size: 4rem;
+    text-align: center;
+    border: 4px solid #3fff00;
+    border-radius: 50px;
+}
 
 .selector{
     display: flex;
-    border: 1px dashed rgb(0, 255, 0);
-    padding: 1rem;
-    max-width: 90%;
-    justify-content: space-around;
-    
+    justify-content: center;
+    max-height:500px;
 }
 
 .device{
+    box-sizing: border-box; 
     display: flex;
-    border: 1px dashed rgb(227 227 69);
-    flex-direction: column;
-    justify-content: inherit;
+    flex-direction: column-reverse;
+    justify-content: space-between;
     width: 30%;
+    margin: .7rem;
+    padding: 1rem;
+    border-radius: 20px;
+    border: 5px solid #3fff00;   
+}
+
+#bomb,
+#shield,
+#ray{
+    padding: 1rem;
+    border-radius: 20px;
+    margin-bottom: .5rem;
+    border: 2px solid #3fff00;
+}
+
+.option{   
+    display: flex;
+    min-height: 30%;
+    justify-content: center;
+    align-items: center;
+    color: #6CB646;
+    padding: 1rem;
+    border-radius: 20px;
+    border: 2px solid #3fff00; 
+}
+
+#handRock,
+#handPaper,
+#handScissors{
+    box-sizing: border-box; 
+    width: 40%;
+    overflow:hidden;
+    height: 100%;
+    border-radius: 8px;
+    padding: 6px;
+    border: 1px solid #ffffff;
+}
+
+.opText{
+    display: flex;
+    box-sizing: border-box; 
+    width: 60%;
+    height: 100%;
+    font-size: 2rem;
+    overflow: hidden;
+    color: #36FF00;
+    border-radius: 8px;
+    padding: 3px;
+    align-items: center;
+    text-align: center;
+    border: 1px solid #ffffff;    
 }
 
 .image{
     display: flex;
-    object-fit: scale-down;  
-    overflow: hidden;   
-    align-items: center;
+    height: 100%;
     justify-content: center;
+    overflow: hidden;
 
-    border: 1px dashed blue;
+    border: 0px dotted blue;
 }
-.image img {
+
+.image img { 
+    max-height: 100%;
     max-width: 100%;
-    max-height: 300px;
-    object-fit: contain;
+    object-fit: contain;   /*Applied directly to the img, allows to maintain the aspect ratio when flex is applied to the 'image container'*/
+    
+    border: 0px dashed #15f3b0;
 }
 
-.option{
-    border: 1px dashed blue;
-}
 
 .status{
     height: 16rem;
     display: flex;
-    border: 1px dashed blue;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
-}
-
-.startImage, startTitle{
-    margin: 2rem;
+    overflow: hidden;
 }
 
 
+.startTitle{
+    font-size: 2.5rem;
+    width: 30%;
+    text-align: center;
+    padding: 1rem;
+    border: 0px dashed #15f3b0;
+}
 
 .startImage{
     object-fit: cover;  
     display: flex;
-    border: 1px dashed blue;
-    height: 100%;
+    height: 80%;
+    padding: 1rem;
+
+    border: 0px dashed #e019f0;
 }
 
 #lBolt{
     transform: scaleX(-1); 
 }
 
-.device, 
-.status,
+
 .temporal{
-    border: 1px dashed red;
-    margin: 1rem;
+    margin: 1.5rem;
     text-align: center;
+    border: px dotted #3fff00;
 }
   
 /*Pending to apply the transitions
