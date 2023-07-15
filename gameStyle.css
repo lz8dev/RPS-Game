@@ -21,16 +21,18 @@ body{
 .mainTitle, 
 .selector,
 .status{
+    display: flex;
+    box-sizing: border-box;
     width: 65rem;
-    border: 4px solid #3fff00;
-    border-radius: 40px;
     margin: .6rem;
+    justify-content: center;
+    border: px solid #3fff00;
+    border-radius: 40px;
 }
 
 .mainTitle{
     font-size: 4rem;
     text-align: center;
-    border: 4px solid #3fff00;
     border-radius: 50px;
 }
 
@@ -46,19 +48,29 @@ body{
     flex-direction: column-reverse;
     justify-content: space-between;
     width: 30%;
+    height: 25rem;
     margin: .7rem;
     padding: 1rem;
     border-radius: 20px;
-    border: 5px solid #3fff00;   
+    border: 4px solid #3fff00;
+}
+
+#bomb{
+    padding: .5rem;
+}
+
+#shield,
+#ray{
+    padding: 1rem;
 }
 
 #bomb,
 #shield,
 #ray{
-    padding: 1rem;
     border-radius: 20px;
     margin-bottom: .5rem;
-    border: 2px solid #3fff00;
+    border: 2px solid;
+    border-color: inherit;
 }
 
 .option{   
@@ -69,7 +81,8 @@ body{
     color: #6CB646;
     padding: 1rem;
     border-radius: 20px;
-    border: 2px solid #3fff00; 
+    border: 2px solid;
+    border-color: inherit; 
 }
 
 #handRock,
@@ -89,12 +102,13 @@ body{
     box-sizing: border-box; 
     width: 60%;
     height: 100%;
-    font-size: 2rem;
+    font-size: 1.8rem;
     overflow: hidden;
     color: #36FF00;
     border-radius: 8px;
     padding: 3px;
     align-items: center;
+    justify-content: center;
     text-align: center;
     border: 1px solid #ffffff;    
 }
@@ -118,11 +132,12 @@ body{
 
 
 .status{
-    height: 16rem;
+    height: 20rem;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    padding: 1rem;
 }
 
 
@@ -134,12 +149,10 @@ body{
     border: 0px dashed #15f3b0;
 }
 
-.startImage{
-    object-fit: cover;  
+.startImage{ 
     display: flex;
-    height: 80%;
+    height: 60%;
     padding: 1rem;
-
     border: 0px dashed #e019f0;
 }
 
@@ -153,7 +166,84 @@ body{
     text-align: center;
     border: px dotted #3fff00;
 }
-  
+
+
+.division,
+.sDiv,
+.sTitle{
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: space-between;
+    /*height: 100%;*/
+    border: 2px solid #3fff00;
+}
+
+
+.sDiv,
+.sTitle{
+    width: 100%;
+    padding: 1rem;
+}
+
+.division{
+    flex-direction: column;
+    width: 48%;    
+}
+
+.selection,
+.score
+{
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem;
+    border: px solid #3fff00;
+}
+
+.selection,
+.score,
+.division{
+    height: 100%;
+}
+
+.selection,
+.score{
+     width: 49%; 
+}
+
+.sDiv{
+    height: 80%;
+}
+
+.sTitle{
+    height: 20%;
+    margin-bottom: 1rem;
+    justify-content: center;
+    font-size: 2rem;
+}
+
+.marker1,
+.marker2{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #3fff00;
+}
+
+.marker1{
+    box-sizing: border-box;
+    font-size: 1.3rem;
+    padding: 4px;
+}
+
+.marker2{
+    box-sizing: border-box;
+    height: 100%    
+}
+
 /*Pending to apply the transitions
 
 .text {

@@ -1,7 +1,7 @@
+//hover behaviour unoptimized
 let hovRock = document.getElementById('dev1');
 let hovPapr = document.getElementById('dev2');
 let hovScss = document.getElementById('dev3');
-
 let bomb = document.getElementById('bomb');
 let hdBomb = document.getElementById('handRock');
 let txBomb = document.getElementById('txBomb');
@@ -26,7 +26,7 @@ hovRock.addEventListener('mouseleave', function() {
     bomb.innerHTML = '<img src="img/bomb.png" alt="bomb">';
     hdBomb.innerHTML = '<img src="img/rock.png" alt="rock">';
     txBomb.style.color = '#3fff00';
-    brBomb.style.border = '5px solid #3fff00';
+    brBomb.style.border = '4px solid #3fff00';
 });
 
 hovPapr.addEventListener('mouseenter', function() {
@@ -39,7 +39,7 @@ hovPapr.addEventListener('mouseleave', function() {
     shield.innerHTML = '<img src="img/shield.png" alt="shield">';
     hdShield.innerHTML = '<img src="img/paper.png" alt="paper">';
     txShield.style.color = '#3fff00';
-    brShield.style.border = '5px solid #3fff00';
+    brShield.style.border = '4px solid #3fff00';
 });
 
 hovScss.addEventListener('mouseenter', function() {
@@ -52,10 +52,53 @@ hovScss.addEventListener('mouseleave', function() {
     ray.innerHTML = '<img src="img/ray.png" alt="ray">';
     hdRay.innerHTML = '<img src="img/scissors.png" alt="scissors">';
     txRay.style.color = '#3fff00';
-    brRay.style.border = '5px solid #3fff00';
+    brRay.style.border = '4px solid #3fff00';
 });
 
+/*hover code optimized (assess)
 
+// Define a single event listener on the parent container
+document.querySelector('.selector').addEventListener('mouseenter', function(event) {
+    // Check if the event target has the class 'device'
+    if (event.target.classList.contains('device')) {
+      // Get the necessary elements based on the event target
+      let image = event.target.querySelector('.image');
+      let hdImage = event.target.querySelector('.hdImage');
+      let text = event.target.querySelector('.opText');
+      let border = event.target;
+  
+      // Modify the elements as needed
+      image.innerHTML = '<img src="img/bomb2.png" alt="bomb">';
+      hdImage.innerHTML = '<img src="img/rock2.png" alt="rock">';
+      text.style.color = '#f700ff';
+      border.style.border = '8px solid #ffffff';
+    }
+  });
+  
+  // Define another event listener on the parent container for mouseleave
+  document.querySelector('.selector').addEventListener('mouseleave', function(event) {
+    // Check if the event target has the class 'device'
+    if (event.target.classList.contains('device')) {
+      // Get the necessary elements based on the event target
+      let image = event.target.querySelector('.image');
+      let hdImage = event.target.querySelector('.hdImage');
+      let text = event.target.querySelector('.opText');
+      let border = event.target;
+  
+      // Modify the elements as needed
+      image.innerHTML = '<img src="img/bomb.png" alt="bomb">';
+      hdImage.innerHTML = '<img src="img/rock.png" alt="rock">';
+      text.style.color = '#3fff00';
+      border.style.border = '5px solid #3fff00';
+    }
+  });
+
+*/
+
+
+/*
+deactivate this ellipsis script when the user makes his first move, reactivate when the user clicks on 'play again' (HTML: start status)
+*/
 
 //setting ellipsis animation
 let count = 0;      
@@ -70,8 +113,8 @@ setInterval(ellipsis, 300);     //calls the 'ellipsis' function every 500ms, not
 
 
 
-/*
-//function to split the div
+/*function to split the div
+
 const div1 = document.createElement('div');
 const div2 = document.createElement('div');
 
@@ -90,6 +133,7 @@ document.body.appendChild(div2);
 
 
 //function to choose randomly an option
+
 let choice; 
 let container = document.getElementById("container");       //assign the container and its content to a variable 
 container.addEventListener('click', playMatch);             //the variable is called when an event happens, in this case, click on any button
