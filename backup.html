@@ -12,8 +12,8 @@
 <body>
     <div class="mainTitle">👽 Alien Yan-Ken-Po 👽</div>
 
-    <div class="selector" id="selectorID">
-        <div class="device" id="dev1" data-cname="Blast Bomb">
+    <div class="selector">
+        <div class="device" id="dev1">
             <div class="option">
                 <div class="opText" id="txBomb">Blast<br>Bomb💣</div>
                 <div class="image hdImage" id="handRock">
@@ -25,7 +25,7 @@
         </div>
         </div>
 
-        <div class="device" id="dev2" data-cname="Energy Shield">
+        <div class="device" id="dev2">
             <div class="option">
                 <div class="opText" id="txShield">Energy<br>Shield🛡️</div>
                 <div class="image hdImage" id="handPaper">
@@ -37,7 +37,7 @@
             </div>
         </div>
 
-        <div class="device" id="dev3" data-cname="Gamma Ray">
+        <div class="device" id="dev3">
             <div class="option">
                 <div class="opText" id="txRay">Gamma<br>Ray🔫</div>
                 <div class="image hdImage" id="handScissors">
@@ -50,16 +50,20 @@
         </div>
     </div>
 
-    <div class="status" id="statusID">
+    <div class="status">
         
         <div class="selection">
             <div class="sTitle">
                 STATUS
             </div>
-
             <div class="sDiv">
-                <div class="think">
-                    A.I. IS THINKING <br><div class="temporal"></div>
+                <div class="division" id="selUser">
+                    <div class="marker1">YOUR SELECTION</div>
+                    <div class="marker2">---</div>
+                </div>
+                <div class="division" id="selCpu">
+                    <div class="marker1">A.I. SELECTION</div>
+                    <div class="marker2">---</div>
                 </div>
             </div>
         </div>
@@ -68,14 +72,64 @@
             <div class="sTitle">   
                 SCORE
             </div>
-
             <div class="sDiv">
-                <div class="think">YOU WIN!/LOSE!
-                    <div class="result">-The Gamma Ray pierces the Energy Shield-</div>
+                <div class="division" id="scrUser">
+                    <div class="marker1">USER SCORE</div>
+                    <div class="marker2">---</div>
+                </div>
+                <div class="division" id="scrCpu">
+                    <div class="marker1">A.I. SCORE</div>
+                    <div class="marker2">---</div>
                 </div>
             </div>
         </div>
+        
+        
+        
+
+        <!-- 
+            
+        s
+        --- start status
+        <div class="startImage" id="lBolt">
+            <img src="img/bolt.png" alt="lBolt">
+        </div>
+        <div class="startTitle">
+            CHOOSE YOUR DEVICE<br><div class="temporal"></div>
+        </div>
+        <div class="startImage" id="rBolt">
+            <img src="img/bolt.png" alt="lBolt">
+        </div>
+        
+        sDiv
+        --- thinking status
+        <div class="think">
+            A.I. IS THINKING <br><div class="temporal"></div>
+        </div>
+
+        --- score status
+        <div class="division" id="scrUser">
+            <div class="marker1">USER SCORE</div>
+            <div class="marker2 image" id="scrUserImg">
+                <img src="img/5pf.png">
+            </div>
+        </div>
+
+        <div class="division" id="scrCpu">
+            <div class="marker1">A.I. SCORE</div>
+            <div class="marker2 image" id="scrCpuImg">
+                <img src="img/2p.png">
+            </div>
+        </div>
+
+        --- result status
+        <div class="think">YOU WIN!/LOSE!
+            <div class="result">-The Gamma Ray pierces the Energy Shield-</div>
+        </div>
+        
+        -->
 
     </div>
 </body>
 </html>
+
