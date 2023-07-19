@@ -39,7 +39,10 @@ body{
 .selector{
     display: flex;
     justify-content: center;
-    max-height:500px;
+    align-items: center;
+    height:450px;
+    
+    border: px solid #3fff00;
 }
 
 .device{
@@ -245,6 +248,7 @@ body{
     box-sizing: border-box;
     height: 100%;
     margin: .5rem;
+    padding: 15px;
 }
 
 .think{

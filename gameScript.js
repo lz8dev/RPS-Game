@@ -17,10 +17,12 @@ let brRay = document.getElementById('dev3');
 
 //applying hover styles
 hovRock.addEventListener('mouseenter', function() {
-    bomb.innerHTML = '<img src="img/bomb2.png" alt="bomb">';
-    hdBomb.innerHTML = '<img src="img/rock2.png" alt="rock">';
-    txBomb.style.color = '#f700ff';
-    brBomb.style.border = '8px solid #ffffff';
+    if (!isPlaying) {
+        bomb.innerHTML = '<img src="img/bomb2.png" alt="bomb">';
+        hdBomb.innerHTML = '<img src="img/rock2.png" alt="rock">';
+        txBomb.style.color = '#f700ff';
+        brBomb.style.border = '8px solid #ffffff';
+    };
 });
 hovRock.addEventListener('mouseleave', function() {
     bomb.innerHTML = '<img src="img/bomb.png" alt="bomb">';
@@ -30,11 +32,14 @@ hovRock.addEventListener('mouseleave', function() {
 });
 
 hovPapr.addEventListener('mouseenter', function() {
-    shield.innerHTML = '<img src="img/shield2.png" alt="shield">';
-    hdShield.innerHTML = '<img src="img/paper2.png" alt="paper">';
-    txShield.style.color = '#f700ff';
-    brShield.style.border = '8px solid #ffffff';
+    if (!isPlaying) {
+        shield.innerHTML = '<img src="img/shield2.png" alt="shield">';
+        hdShield.innerHTML = '<img src="img/paper2.png" alt="paper">';
+        txShield.style.color = '#f700ff';
+        brShield.style.border = '8px solid #ffffff';
+    };
 });
+
 hovPapr.addEventListener('mouseleave', function() {
     shield.innerHTML = '<img src="img/shield.png" alt="shield">';
     hdShield.innerHTML = '<img src="img/paper.png" alt="paper">';
@@ -43,11 +48,14 @@ hovPapr.addEventListener('mouseleave', function() {
 });
 
 hovScss.addEventListener('mouseenter', function() {
-    ray.innerHTML = '<img src="img/ray2.png" alt="ray">';
-    hdRay.innerHTML = '<img src="img/scissors2.png" alt="scissors">';
-    txRay.style.color = '#f700ff';
-    brRay.style.border = '8px solid #ffffff';
+    if (!isPlaying) {
+        ray.innerHTML = '<img src="img/ray2.png" alt="ray">';
+        hdRay.innerHTML = '<img src="img/scissors2.png" alt="scissors">';
+        txRay.style.color = '#f700ff';
+        brRay.style.border = '8px solid #ffffff';
+    };
 });
+
 hovScss.addEventListener('mouseleave', function() {
     ray.innerHTML = '<img src="img/ray.png" alt="ray">';
     hdRay.innerHTML = '<img src="img/scissors.png" alt="scissors">';
@@ -115,63 +123,98 @@ setInterval(ellipsis, 200);     //calls the 'ellipsis' function every 500ms, not
 // game logic
 let choice; 
 let container = document.getElementById("selectorID");       //assign the container and its content to a variable, when any element inside 'selectorID' is clicked, the function is triggered
-container.addEventListener('click', playMatch);             //the variable is called when an event happens, in this case, click on any option
+container.addEventListener('click', blockClick);             //the variable is called when an event happens, in this case, click on any option, without () to avoid calling the playMatche function immediately and passing its return value (undefined) as the callback function to the addEventListener method.
+
+function playMatches(event){
+    let device = event.target.closest('.device');       //using event.target will refer to the innermost element clicked as the images or text, none of them has the 'cname'so when clikced the result will be undefined. Instead is used 'closest' that will search for the closest ancestor div with the class "device" and then access its data-cname attribute
+    if (device){
+        let tname = device.dataset.cname;
+        console.log(tname);
+    }    
+}
 
 let comScore = 0,
     userScore = 0,
     plays = 0,          //attempt counter
     result,             //description of the choices
-    result2;            //rounds remaining or game over
+    result2,           //rounds remaining or game over
+    isPlaying = false;
 
-
-function playMatch () {                 //assign the messages values looking at the round result
-    if (comScore === 5 || userScore === 5) {
-        compare()
-        comScore > userScore ? result2 = 'GAME OVER! Computer wins the match' : 
-        result2 = 'GAME OVER! You win the match';
-        console.log('Computer: ' + comScore);
-        console.log('you: ' + userScore);
-        console.log(result2);
-        comScore = 0;
-        userScore = 0;
-        plays = 0;
-    } else {
-        compare()
-        plays ++;           
-        result2 = 'Plays remaining: ' + (5 - plays);
-        console.log('Computer: ' + comScore);
-        console.log('you: ' + userScore);
-        console.log(result2);
+function blockClick(event) {
+    if (!isPlaying) {
+        let device = event.target.closest('.device');
+        if (!device) {
+        return; // return if the clicked element is not a device
+        }
+        isPlaying = true; // Set the flag to block the event listener
+        playMatch(event);
     }
-    console.log('+++++++++++++++++++');
 }
 
-function compare() {            //compare the choices and returns the round result
-    let playerSelection = event.target.dataset.cname,
-        computerSelection = getComputerChoice();
-           
-    if (playerSelection === 'Blast Bomb' && computerSelection === 'Energy Shield') {
+function playMatch (event) {     //assign the messages values looking at the round result
+    let device = event.target.closest('.device');
+    if (device){
+        let playerSelection = device.dataset.cname,
+            computerSelection = getComputerChoice(),
+            winner;
+        compare(playerSelection, computerSelection);
+        chgToThink();
+            setTimeout(function () {
+                chgToStat();
+                userSel(playerSelection);
+                cpuSel(computerSelection);
+                chgToResult();
+                setTimeout(function () {
+                    chgToScr();
+                    userPoints(userScore);
+                    cpuPoints(comScore);
+                    isPlaying = false;
+                }, 1000);
+            }, 1000);
+            console.log(result, result2, userScore, comScore, playerSelection, computerSelection);
+
+        if (comScore === 5) {   
+            winner = 'A.I.';    
+            chgToGmOver(winner);
+        } else if (userScore === 5){
+            winner = 'YOU';
+            chgToGmOver(winner);
+        };
+    }
+}
+
+
+  
+
+function compare(playerSelection, computerSelection) {            //compare the choices and returns the round result
+    if (playerSelection === 'Blast Bomb' && computerSelection === 'Energy Shield'){
         result = `-The ${computerSelection} blocks the ${playerSelection}-`;
+        result2 = `YOU LOSE!`;
         comScore ++;
     } else if (playerSelection === 'Blast Bomb' && computerSelection === 'Gamma Ray') {
         result = `-The ${playerSelection} destroys the ${computerSelection}-`;
+        result2 = `YOU WIN!`;
         userScore ++;
     } else if (playerSelection === 'Energy Shield' && computerSelection === 'Blast Bomb') {
         result = `-The ${playerSelection} blocks the ${computerSelection}-`;
+        result2 = `YOU WIN!`;
         userScore ++;
     } else if (playerSelection === 'Energy Shield' && computerSelection === 'Gamma Ray') {
         result = `-The ${computerSelection} pierces the ${playerSelection}-`;
+        result2 = `YOU LOSE!`;
         comScore ++;
     } else if (playerSelection === 'Gamma Ray' && computerSelection === 'Energy Shield') {
         result = `-The ${playerSelection} pierces the ${computerSelection}-`;
+        result2 = `YOU WIN!`;
         userScore ++;
     } else if (playerSelection === 'Gamma Ray' && computerSelection === 'Blast Bomb') {
         result = `-The ${computerSelection} destroys the ${playerSelection}-`;
+        result2 = `YOU LOSE!`;
         comScore ++;
     } else {
         result = '-Mutual destruction-';
-    };
-    return (result);
+        result2 = `TIE!`;
+    }
 }
 
 function getComputerChoice () {         //random choice between 0 and 2, assign a choice to each number
@@ -228,11 +271,11 @@ function chgToStat(){
     element.innerHTML = `
         <div class="division" id="selUser">
             <div class="marker1">YOUR SELECTION</div>
-            <div class="marker2" id="selImgUser">---</div>
+            <div class="marker2 image" id="selImgUser">---</div>
         </div>
         <div class="division" id="selCpu">
             <div class="marker1">A.I. SELECTION</div>
-            <div class="marker2" id="selImgCpu">---</div>
+            <div class="marker2 image" id="selImgCpu">---</div>
         </div>`
 }
 
@@ -247,6 +290,33 @@ function chgToScr(){
             <div class="marker1">A.I. SCORE</div>
             <div class="marker2 image" id="scrImgCpu">---</div>
         </div>`
+}
+
+function chgToResult(){
+    let container = document.getElementById('scrDiv');
+    container.innerHTML = `
+    <div class="think">
+        <div id="match"></div>
+        <div class="result" id="compare"></div>
+    </div>`;
+
+    let match = document.getElementById('match'),
+        comp = document.getElementById('compare');
+    match.innerHTML = result2;
+    comp.innerHTML = result;
+}
+
+function chgToGmOver(who){
+    let element = document.getElementById('selectorID');
+    element.innerHTML = `
+        <div class="think">
+            <div>GAME OVER!</div>
+            <div class="result" id="whoWin">- YOU/A.I. WINS THE BATTLE -</div>
+            <button> - FIGHT AGAIN - </button>
+        </div>`
+    
+    let wResult = document.getElementById('whoWin');
+    wResult.innerHTML = ` - ${who} WINS THE BATTLE! - `;
 }
 
 function userPoints(){
@@ -270,6 +340,26 @@ function cpuPoints(){
     comScore === 5 ? element.innerHTML = `<img src="img/5p.png">`:
     element = '---';
 }
+
+function userSel(playerSelection){
+    let user = document.getElementById('selImgUser');
+    playerSelection === 'Blast Bomb' ? user.innerHTML = `<img src="img/bomb.png">`:
+    playerSelection === 'Energy Shield' ? user.innerHTML = `<img src="img/shield.png">`:
+    playerSelection === 'Gamma Ray' ? user.innerHTML = `<img src="img/ray.png">`:
+    user = '---';
+}
+
+function cpuSel(computerSelection){
+    let cpu = document.getElementById('selImgCpu');
+    computerSelection === 'Blast Bomb' ? cpu.innerHTML = `<img src="img/bomb.png">`:
+    computerSelection === 'Energy Shield' ? cpu.innerHTML = `<img src="img/shield.png">`:
+    computerSelection === 'Gamma Ray' ? cpu.innerHTML = `<img src="img/ray.png">`:
+    cpu = '---';
+}
+
+
+
+
 
 /*<div class="division" id="scrUser">
             <div class="marker1">USER SCORE</div>
