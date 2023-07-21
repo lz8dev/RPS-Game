@@ -1,5 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Tomorrow&display=swap');
 
+@keyframes flicker {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
+
 html, 
 body{
     margin: 0;
@@ -8,7 +18,6 @@ body{
   
 body{
     display: flex;
-    
     border: 1px dashed red;
     flex-direction: column;
     align-items: center;
@@ -26,7 +35,7 @@ body{
     width: 65rem;
     margin: .6rem;
     justify-content: center;
-    border: px solid #3fff00;
+    border: px solid #3fff00;    
     border-radius: 40px;
 }
 
@@ -34,6 +43,7 @@ body{
     font-size: 4rem;
     text-align: center;
     border-radius: 50px;
+    text-shadow: 0 0 8px #3fff00; 
 }
 
 .selector{
@@ -54,8 +64,11 @@ body{
     height: 25rem;
     margin: .7rem;
     padding: 1rem;
+    cursor: cell;
     border-radius: 20px;
     border: 4px solid #3fff00;
+    text-shadow: 0 0 5px rgba(63, 255, 1, 8); 
+    box-shadow: 0 0 20px rgba(63, 255, 0, 0.8); 
 }
 
 #bomb{
@@ -74,6 +87,7 @@ body{
     margin-bottom: .5rem;
     border: 2px solid;
     border-color: inherit;
+    animation: flicker 0.09s infinite;
 }
 
 .option{   
@@ -86,6 +100,7 @@ body{
     border-radius: 20px;
     border: 2px solid;
     border-color: inherit; 
+    animation: flicker 0.09s infinite;
 }
 
 #handRock,
@@ -121,6 +136,8 @@ body{
     height: 100%;
     justify-content: center;
     overflow: hidden;
+    image-rendering: optimizespeed;
+    
 
     border: 0px dotted blue;
 }
@@ -156,7 +173,7 @@ body{
     display: flex;
     height: 60%;
     padding: 1rem;
-    border: 0px dashed #e019f0;
+    border: 0px dashed #f700ff
 }
 
 #lBolt{
@@ -187,6 +204,10 @@ body{
 .sTitle{
     width: 100%;
     padding: 1rem;
+    border: 4px solid #3fff00;
+    border-radius: 15px;
+    text-shadow: 0 0 5px rgba(63, 255, 0, 0.8);
+    box-shadow: 0 0 10px rgba(63, 255, 0, 0.8);
 }
 
 .division{
@@ -249,6 +270,7 @@ body{
     height: 100%;
     margin: .5rem;
     padding: 15px;
+    animation: flicker 0.09s infinite;
 }
 
 .think{
@@ -265,9 +287,36 @@ body{
     border: px solid red;
 }
 
+.gOver{
+    font-size: 4rem;
+    text-shadow: 0 0 10px rgba(63, 255, 0, 0.8);
+}
+
 .result{
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     margin-top: 1rem;
+    text-shadow: 0 0 10px rgba(63, 255, 0, 0.8);
+}
+
+#restart{
+    padding: 1rem 2rem;
+    background-color: #3fff00;
+    border: 2px solid #3fff00;
+    color: white;
+    font-family: 'Tomorrow', sans-serif;
+    font-size: 1.5rem;
+    border-radius: 5px;
+    cursor: cell;
+    margin: 2rem;
+    text-shadow: 0 0 5px rgb(0 0 0 / 80%);    
+    transition: background-color .5s, border-color .5s, color .5s;  
+}
+
+#restart:hover {
+    background-color: black;
+    border: 3px solid white;
+    color: white;
+    cursor: pointer;
 }
 
 .temporal{
