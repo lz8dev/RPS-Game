@@ -149,13 +149,43 @@ function playMatch (event) {     //assign the messages values looking at the rou
     }
 }
 
-
 function winFlick(winner) { 
+    let fivePuser = document.getElementById('fivePuser'),
+        fivePcpu = document.getElementById('fivePcpu'),
+        images = ['img/5p.png', 'img/5pf.png'],
+        counter = 0;
+        
+    if (winner === 'A.I. WINS') {
+        let flickInterval = setInterval(function() {
+        if (counter < 6) { // Flicker three times (6 toggles)
+            fivePcpu.src = images[counter % 2];
+            counter++;
+        } else {
+            clearInterval(flickInterval); // Clear the interval after three flickers
+            fivePcpu.src = images[1]; // Set the image to 5pf.png
+        }
+        }, 200); // Adjust the interval duration (in milliseconds) as desired
+    } else if (winner === 'YOU WIN') {
+        let flickInterval = setInterval(function() {
+        if (counter < 6) { // Flicker three times (6 toggles)
+            fivePuser.src = images[counter % 2];
+            counter++;
+        } else {
+            clearInterval(flickInterval); // Clear the interval after three flickers
+            fivePuser.src = images[1]; // Set the image to 5pf.png
+        }
+      }, 200); // Adjust the interval duration (in milliseconds) as desired 
+    } else {
+      return;
+    }
+}
+
+/*function winFlick(winner) { 
     let fiveUser = document.getElementById('scrImgUser'),
         fiveCpu = document.getElementById('scrImgCpu')
         images = ['img/5p.png', 'img/5pf.png'];
         counter = 0;
-        
+
     if (winner === 'A.I. WINS'){
         let flickInterval = setInterval(function() {
             if (counter < 6) { // Flicker three times (6 toggles)
@@ -179,7 +209,7 @@ function winFlick(winner) {
     } else {
         return;
     }
-}
+}*/
 
 function compare(playerSelection, computerSelection) {            //compare the choices and returns the round result
     if (playerSelection === 'Blast Bomb' && computerSelection === 'Energy Shield'){
@@ -370,6 +400,7 @@ function userPoints(){
     userScore === 2 ? element.innerHTML = `<img src="img/2p.png">`:
     userScore === 3 ? element.innerHTML = `<img src="img/3p.png">`:
     userScore === 4 ? element.innerHTML = `<img src="img/4p.png">`:
+    userScore === 5 ? element.innerHTML = `<img id="fivePuser" src="img/5p.png">`:
     element = '---';
 }
 
@@ -380,6 +411,7 @@ function cpuPoints(){
     comScore === 2 ? element.innerHTML = `<img src="img/2p.png">`:
     comScore === 3 ? element.innerHTML = `<img src="img/3p.png">`:
     comScore === 4 ? element.innerHTML = `<img src="img/4p.png">`:
+    comScore === 5 ? element.innerHTML = `<img id="fivePcpu" src="img/5p.png">`:
     element = '---';
 }
 
