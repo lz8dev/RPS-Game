@@ -16,5 +16,3 @@ function clicked(element){
 function removeTransition(e) {
     e.target.classList.remove('click');
 }
-
-
