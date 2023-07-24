@@ -35,7 +35,7 @@ function hoverListener() {
             bomb.innerHTML = '<img src="img/bomb2.png" alt="bomb">';
             hdBomb.innerHTML = '<img src="img/rock2.png" alt="rock">';
             txBomb.style.color = '#f700ff';
-            brBomb.style.border = '8px solid #ffffff';
+            brBomb.style.border = '8px solid white';
         };
     });
     
@@ -53,7 +53,7 @@ function hoverListener() {
             shield.innerHTML = '<img src="img/shield2.png" alt="shield">';
             hdShield.innerHTML = '<img src="img/paper2.png" alt="paper">';
             txShield.style.color = '#f700ff';
-            brShield.style.border = '8px solid #ffffff';
+            brShield.style.border = '8px solid white';
         };
     });
 
@@ -69,7 +69,7 @@ function hoverListener() {
             ray.innerHTML = '<img src="img/ray2.png" alt="ray">';
             hdRay.innerHTML = '<img src="img/scissors2.png" alt="scissors">';
             txRay.style.color = '#f700ff';
-            brRay.style.border = '8px solid #ffffff';
+            brRay.style.border = '8px solid white';
         };
     });
 
