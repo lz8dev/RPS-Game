@@ -4,9 +4,14 @@ let comScore = 0,
     plays = 0,          //attempt counter
     result,             //description of the choices
     result2,           //rounds remaining or game over
-    isPlaying = false;
+    isPlaying = false,  //flag to block listener if I.A. is thiking or if status is showing the match 
+    count = 0,
+    choice,
+    container = document.getElementById("selectorID"); 
+    
+container.addEventListener('click', blockClick);
 
-//hover behaviour unoptimized
+//device on hover 
 function hoverListener() {
     let hovRock = document.getElementById('dev1'),
         hovPapr = document.getElementById('dev2'),
@@ -75,31 +80,16 @@ function hoverListener() {
         brRay.style.border = '4px solid #3fff00';
     });
 };
-hoverListener();
+hoverListener();    
 
-//setting ellipsis animation
-let count = 0,
-    choice,
-    container = document.getElementById("selectorID");       //assign the container and its content to a variable, when any element inside 'selectorID' is clicked, the function is triggered
-
-function ellipsis (){           //change the content of 'temporal' adding the dots for ellipsis
+function ellipsis (){           //change the content of 'temporal' adding the dots for ellipsis effect
     let intro = document.querySelector('.temporal');
     if (intro){
         intro.textContent = '.' + '.'.repeat(count % 4);
         count++;
     };
 };
-setInterval(ellipsis, 200);     //calls the 'ellipsis' function every 500ms, note that the function must be called without (), this calls the function itself and not its result after execution.
-
-container.addEventListener('click', blockClick);             //the variable is called when an event happens, in this case, click on any option, without () to avoid calling the playMatche function immediately and passing its return value (undefined) as the callback function to the addEventListener method.
-
-function playMatches(event){
-    let device = event.target.closest('.device');       //using event.target will refer to the innermost element clicked as the images or text, none of them has the 'cname'so when clikced the result will be undefined. Instead is used 'closest' that will search for the closest ancestor div with the class "device" and then access its data-cname attribute
-    if (device){
-        let tname = device.dataset.cname;
-        console.log(tname);
-    }    
-}
+setInterval(ellipsis, 200);     //calls the 'ellipsis' function every 500ms, note that the function must be called without (), this method calls the function itself and not its result after the execution.
 
 function blockClick(event) {
     if (!isPlaying) {
@@ -121,28 +111,30 @@ function playMatch (event) {     //assign the messages values looking at the rou
         compare(playerSelection, computerSelection);
         chgToPlay();
         chgToThink();
-            setTimeout(function () {
+            setTimeout(function () { //all inside this brackets will execute after 1000 ms, this time is how long the "A.I. is thinking" animation lasts
                 chgToStat();
                 userSel(playerSelection);
                 cpuSel(computerSelection);
                 chgToResult();
-                setTimeout(function(){
+                setTimeout(function(){ //the result is shown for 2000ms to be readable by the player
                     chgToScr();
                     userPoints(userScore);
                     cpuPoints(comScore);
                     isPlaying = false;
-                    setTimeout(function(){
-                        if (comScore === 5) {   
-                            winner = 'A.I. WINS';    
+                    if (comScore === 5) {   
+                        winner = 'A.I. WINS'; 
+                        setTimeout(function(){  //the restart button will display after the execution of the winner flicker (2500ms)
                             chgToGmOver(winner);
-                        } else if (userScore === 5){
-                            winner = 'YOU WIN';
+                        }, 1500);
+                    } else if (userScore === 5){
+                        winner = 'YOU WIN';
+                        setTimeout(function(){   
                             chgToGmOver(winner);
-                        } else {
-                            winner = 0;
-                        };
-                        winFlick(winner);
-                    }, 0);
+                        }, 1500);
+                    } else {
+                        winner = 0;
+                    };
+                    winFlick(winner);
                 }, 2000);
             }, 1000);
             console.log(result, result2, userScore, comScore, playerSelection, computerSelection);
@@ -152,64 +144,33 @@ function playMatch (event) {     //assign the messages values looking at the rou
 function winFlick(winner) { 
     let fivePuser = document.getElementById('fivePuser'),
         fivePcpu = document.getElementById('fivePcpu'),
-        images = ['img/5p.png', 'img/5pf.png'],
+        images = ['img/5p.png', 'img/5pf.png'], 
         counter = 0;
         
     if (winner === 'A.I. WINS') {
         let flickInterval = setInterval(function() {
-        if (counter < 6) { // Flicker three times (6 toggles)
-            fivePcpu.src = images[counter % 2];
+        if (counter < 10) { // Flicker five times 
+            fivePcpu.src = images[counter % 2];  //change between 0 and 1 to select the desired image (green or white)
             counter++;
         } else {
             clearInterval(flickInterval); // Clear the interval after three flickers
             fivePcpu.src = images[1]; // Set the image to 5pf.png
         }
-        }, 200); // Adjust the interval duration (in milliseconds) as desired
+        }, 100); 
     } else if (winner === 'YOU WIN') {
         let flickInterval = setInterval(function() {
-        if (counter < 6) { // Flicker three times (6 toggles)
+        if (counter < 10) { 
             fivePuser.src = images[counter % 2];
             counter++;
         } else {
             clearInterval(flickInterval); // Clear the interval after three flickers
             fivePuser.src = images[1]; // Set the image to 5pf.png
         }
-      }, 200); // Adjust the interval duration (in milliseconds) as desired 
+      }, 100); // Adjust the interval duration (in milliseconds) as desired 
     } else {
       return;
     }
 }
-
-/*function winFlick(winner) { 
-    let fiveUser = document.getElementById('scrImgUser'),
-        fiveCpu = document.getElementById('scrImgCpu')
-        images = ['img/5p.png', 'img/5pf.png'];
-        counter = 0;
-
-    if (winner === 'A.I. WINS'){
-        let flickInterval = setInterval(function() {
-            if (counter < 6) { // Flicker three times (6 toggles)
-            fiveCpu.style.backgroundImage = `url(${images[counter % 2]})`;
-            counter++;
-            } else {
-            clearInterval(flickInterval); // Clear the interval after three flickers
-            fiveCpu.style.backgroundImage = `url(${images[1]})`; // Set the background to 5pf.png
-            }
-        }, 200); // Adjust the interval duration (in milliseconds) as desired
-    } else if (winner === 'YOU WIN'){
-        let flickInterval = setInterval(function() {
-            if (counter < 6) { // Flicker three times (6 toggles)
-            fiveUser.style.backgroundImage = `url(${images[counter % 2]})`;
-            counter++;
-            } else {
-            clearInterval(flickInterval); // Clear the interval after three flickers
-            fiveUser.style.backgroundImage = `url(${images[1]})`; // Set the background to 5pf.png
-            }
-        }, 200); // Adjust the interval duration (in milliseconds) as desired 
-    } else {
-        return;
-    }
-}*/
 
 function compare(playerSelection, computerSelection) {            //compare the choices and returns the round result
     if (playerSelection === 'Blast Bomb' && computerSelection === 'Energy Shield'){

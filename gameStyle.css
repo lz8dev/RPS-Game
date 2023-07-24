@@ -8,15 +8,6 @@
         opacity: 0.9;
     }
 }
-  
-#fivePuser.flicker-image {
-    animation: flickerAnimation 0.2s infinite;
-}
-  
-#fivePcpu.flicker-image {
-    animation: flickerAnimation 0.2s infinite;
-}
-
 
 html, 
 body{
@@ -26,41 +17,51 @@ body{
   
 body{
     display: flex;
-    border: 1px dashed red;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     font-family: 'Tomorrow', sans-serif;
     color: #36FF00;
     padding: 2rem 9rem;
+
+    border: 0px dashed red;
 }
 
-.mainTitle, 
+.mainTitle{
+    display: flex;
+    box-sizing: border-box;
+    font-family: 'Tomorrow', sans-serif;
+    font-size: 4rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+    color: #3FFF00;
+    width: 61rem;
+    padding: 1rem;
+    border-radius: 40px;
+    border: 2px solid #3fff00;
+    text-shadow: 0 0 10px rgba(63, 255, 0, 0.8);
+    box-shadow: 0 0 30px rgba(63, 255, 0, 0.8);    
+} 
+
 .selector,
 .status{
     display: flex;
     box-sizing: border-box;
     width: 65rem;
-    margin: .6rem;
-    justify-content: center;
-    border: px solid #3fff00;    
+    align-items: center;
+    justify-content: center;   
     border-radius: 40px;
-}
-
-.mainTitle{
-    font-size: 4rem;
-    text-align: center;
-    border-radius: 50px;
-    text-shadow: 0 0 8px #3fff00; 
+    
+    border: px solid #3fff00; 
 }
 
 .selector{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height:450px;
-    
-    border: px solid #3fff00;
+    height:27rem;
+}
+
+.status{
+    height: 19rem;
+    padding:.5rem;
 }
 
 .device{
@@ -80,7 +81,7 @@ body{
 }
 
 #bomb{
-    padding: .5rem;
+    padding: .5rem; /*different padding to achieve similar sizing as the other devices*/ 
 }
 
 #shield,
@@ -158,23 +159,13 @@ body{
     border: 0px dashed #15f3b0;
 }
 
-
-.status{
-    height: 20rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    padding: 1rem;
-}
-
-
 .startTitle{
     font-size: 2.5rem;
     width: 30%;
     text-align: center;
     padding: 1rem;
     border: 0px dashed #15f3b0;
+    text-shadow: 0 0 20px rgba(63, 255, 1, 8);
 }
 
 .startImage{ 
@@ -203,14 +194,12 @@ body{
     box-sizing: border-box;
     align-items: center;
     justify-content: space-between;
-    /*height: 100%;*/
     border: 2px solid #3fff00;
 }
 
 
 .sDiv,
 .sTitle{
-    width: 100%;
     padding: 1rem;
     border: 4px solid #3fff00;
     border-radius: 15px;
@@ -258,26 +247,21 @@ body{
 
 .marker1,
 .marker2{
+    box-sizing: border-box;
+    font-size: 1.3rem;
+    padding: 4px;
     display: flex;
     width: 100%;
     justify-content: center;
     align-items: center;
-    
 }
 
 .marker1{
-    box-sizing: border-box;
-    font-size: 1.3rem;
-    padding: 4px;
-
     border-bottom: 2px solid #3fff00;
 }
 
 .marker2{
-    box-sizing: border-box;
-    height: 100%;
     margin: .5rem;
-    padding: 15px;
     animation: flicker 0.09s infinite;
 }
 
@@ -306,6 +290,11 @@ body{
     text-shadow: 0 0 10px rgba(63, 255, 0, 0.8);
 }
 
+#fivePuser.flicker-image,  
+#fivePcpu.flicker-image{
+    animation: flickerAnimation 0.2s infinite;
+}
+
 #restart{
     padding: 1rem 2rem;
     background-color: #3fff00;
@@ -326,25 +315,3 @@ body{
     color: white;
     cursor: pointer;
 }
-
-.temporal{
-    border: 0px solid blue;
-}
-
-
-
-
-/*Pending to apply the transitions
-
-.text {
-    opacity: 0;
-    transition: opacity 1s ease;
-    font-family: 'Tomorrow', sans-serif;
-    font-size: 3rem;
-    color: #36FF00;
- }
-  
-.text.show {
-    opacity: 1;
- }
- */
