@@ -14,6 +14,7 @@ body{
     margin: 0;
     background-color: black;
     overflow: auto;
+    height: 100vh;
   }
   
 body{
@@ -22,8 +23,7 @@ body{
     align-items: center;
     justify-content: flex-start;
     font-family: 'Tomorrow', sans-serif;
-    color: #36FF00;
-    padding: 2rem 9rem;
+    color: #3FFF00;
 
     border: 0px dashed red;
 }
@@ -32,37 +32,43 @@ body{
     display: flex;
     box-sizing: border-box;
     font-family: 'Tomorrow', sans-serif;
-    font-size: 4rem;
+    font-size: 5vmin;
     justify-content: center;
-    margin-bottom: 2rem;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
     color: #3FFF00;
-    width: 61rem;
-    padding: 1rem;
-    border-radius: 40px;
-    border: 2px solid #3fff00;
-    text-shadow: 0 0 10px rgba(63, 255, 0, 0.8);
-    box-shadow: 0 0 30px rgba(63, 255, 0, 0.8);    
+    width: 100vmin;
+    padding: 1.5vmin;
+    border-radius: 5vmin;
+    border: .3vmin solid #3FFF00;
+    text-shadow: 0 0 3vmin rgba(63, 255, 0, 0.8);
+    box-shadow: 0 0 4vmin rgba(63, 255, 0, 0.8);    
 } 
 
 .selector,
 .status{
     display: flex;
     box-sizing: border-box;
-    width: 65rem;
     align-items: center;
-    justify-content: center;   
-    border-radius: 40px;
+    justify-content: center;
+    width: 100vh; 
     
-    border: px solid #3fff00; 
+    border: 0px solid #3FFF00; 
 }
 
 .selector{
-    height:27rem;
+    height: 50vh;
+    overflow: hidden;
+    
+    border: px solid #1b3790;
 }
 
 .status{
-    height: 19rem;
-    padding:.5rem;
+    height: 40vh;
+    padding: vmin;
+    overflow: hidden;
+    
+    border: px solid #1b3790;
 }
 
 .device{
@@ -70,34 +76,34 @@ body{
     display: flex;
     flex-direction: column-reverse;
     justify-content: space-between;
-    width: 30%;
-    height: 25rem;
-    margin: .7rem;
-    padding: 1rem;
+    width: 32vmin;
+    height: 45vh;
+    margin: 1.7vmin;
+    padding: 2vmin;
     cursor: cell;
-    border-radius: 20px;
-    border: 4px solid #3fff00;
-    text-shadow: 0 0 5px rgba(63, 255, 1, 8); 
-    box-shadow: 0 0 20px rgba(63, 255, 0, 0.8); 
+    border-radius: 4vmin;
+    border: .6vmin solid #3FFF00;
+    text-shadow: 0 0 2vmin rgba(63, 255, 1, 8); 
+    box-shadow: 0 0 2vmin rgba(63, 255, 0, 0.8); 
 }
 
 #bomb{
-    padding: .5rem; /*different padding to achieve similar sizing as the other devices*/ 
+    padding: 1.5vmin; /*different padding to achieve similar sizing as the other devices*/ 
 }
 
 #shield,
 #ray{
-    padding: 1rem;
+    padding: 2.5vmin;
 }
 
 #bomb,
 #shield,
 #ray{
-    border-radius: 20px;
-    margin-bottom: .5rem;
-    border: 2px solid;
+    border-radius: 2vmin;
+    margin-bottom: 1.8vmin;
+    border: .4vmin solid;
     border-color: inherit;
-    animation: flicker 0.09s infinite;
+    animation: flickerAnimation 0.09s infinite;
 }
 
 .option{   
@@ -105,12 +111,11 @@ body{
     min-height: 30%;
     justify-content: center;
     align-items: center;
-    color: #6CB646;
-    padding: 1rem;
-    border-radius: 20px;
-    border: 2px solid;
-    border-color: inherit; 
-    animation: flicker 0.09s infinite;
+    color: #3FFF00;
+    padding: 1.5vmin;
+    border-radius: 2vmin;
+    border: .4vmin solid;
+    border-color: inherit;
 }
 
 #handRock,
@@ -120,9 +125,10 @@ body{
     width: 40%;
     overflow:hidden;
     height: 100%;
-    border-radius: 8px;
-    padding: 6px;
-    border: 1px solid #ffffff;
+    border-radius: 1vmin;
+    padding: .5vmin;
+    border: .3vmin solid #ffffff;
+    
 }
 
 .opText{
@@ -130,15 +136,15 @@ body{
     box-sizing: border-box; 
     width: 60%;
     height: 100%;
-    font-size: 1.8rem;
+    font-size: 2.7vmin;
     overflow: hidden;
-    color: #36FF00;
-    border-radius: 8px;
-    padding: 3px;
+    color: #3FFF00;
+    border-radius: 1vmin;
+    padding: .7vmin;
     align-items: center;
     justify-content: center;
     text-align: center;
-    border: 1px solid #ffffff;    
+    border: .3vmin solid #ffffff;    
 }
 
 .image{
@@ -146,8 +152,7 @@ body{
     height: 100%;
     justify-content: center;
     overflow: hidden;
-    image-rendering: optimizespeed;
-    
+    image-rendering: pixelated;
 
     border: 0px dotted blue;
 }
@@ -162,17 +167,17 @@ body{
 
 .startTitle{
     font-size: 2.5rem;
-    width: 30%;
+    width: 20vmin;
     text-align: center;
-    padding: 1rem;
+    padding: 3vmin;
     border: 0px dashed #15f3b0;
-    text-shadow: 0 0 20px rgba(63, 255, 1, 8);
 }
 
 .startImage{ 
     display: flex;
-    height: 60%;
-    padding: 1rem;
+    height: 30vh;
+    padding: 2vmin;
+    animation: flickerAnimation 0.09s infinite;
     border: 0px dashed #f700ff
 }
 
@@ -181,11 +186,11 @@ body{
 }
 
 
-.temporal{
-    margin: 1.5rem;
+/*.temporal{
+    margin: 1vmin;
     text-align: center;
     border: px dotted #3fff00;
-}
+}*/
 
 
 .division,
@@ -195,22 +200,26 @@ body{
     box-sizing: border-box;
     align-items: center;
     justify-content: space-between;
-    border: 2px solid #3fff00;
 }
 
 
 .sDiv,
 .sTitle{
-    padding: 1rem;
-    border: 4px solid #3fff00;
-    border-radius: 15px;
-    text-shadow: 0 0 5px rgba(63, 255, 0, 0.8);
-    box-shadow: 0 0 10px rgba(63, 255, 0, 0.8);
+    padding: 1vmin;
+    border: .5vmin solid #3FFF00;
+    border-radius: 2vmin;
+    text-shadow: 0 0 2vmin rgba(63, 255, 0, 0.8);
+    box-shadow: 0 0 2.8vmin rgba(63, 255, 0, 0.8);
 }
 
 .division{
     flex-direction: column;
-    width: 48%;    
+    margin: 1vmin;
+    height: 20vh;
+    width: 50vmin;
+    border-radius: 1.5vmin;
+    
+    border: .3vmin solid #3FFF00;
 }
 
 .selection,
@@ -220,37 +229,27 @@ body{
     box-sizing: border-box;
     flex-direction: column;
     justify-content: space-between;
-    padding: 1rem;
+    padding: 2vmin;
+    width: 50vmin;
     border: px solid #3fff00;
 }
 
-.selection,
-.score,
-.division{
-    height: 100%;
-}
 
-.selection,
-.score{
-     width: 49%; 
-}
 
 .sDiv{
-    height: 80%;
+    height: 25vh;
 }
 
 .sTitle{
-    height: 20%;
-    margin-bottom: 1rem;
+    margin-bottom: 1.8vmin;
     justify-content: center;
-    font-size: 2rem;
+    font-size: 3.7vmin;
 }
 
 .marker1,
 .marker2{
     box-sizing: border-box;
-    font-size: 1.3rem;
-    padding: 4px;
+    font-size: 2.1vmin;
     display: flex;
     width: 100%;
     justify-content: center;
@@ -258,12 +257,15 @@ body{
 }
 
 .marker1{
+    height: 8vmin;
+    overflow: hidden;
     border-bottom: 2px solid #3fff00;
+    padding: .66vmin;
 }
 
 .marker2{
-    margin: .5rem;
-    animation: flicker 0.09s infinite;
+    margin: 2vmin;
+    animation: flickerAnimation 0.09s infinite;
 }
 
 .think{
@@ -273,7 +275,7 @@ body{
     width: 100%;
     height: 100%;
     align-items: center;
-    font-size: 2rem;
+    font-size: 3.5vmin;
     justify-content: center;
     text-align: center;
     
@@ -281,12 +283,12 @@ body{
 }
 
 .gOver{
-    font-size: 4rem;
-    text-shadow: 0 0 10px rgba(63, 255, 0, 0.8);
+    font-size: 8vmin;
+    text-shadow: 0 0 3vmin rgba(63, 255, 0, 0.8);
 }
 
 .result{
-    font-size: 1.1rem;
+    font-size: 2vmin;
     margin-top: 1rem;
     text-shadow: 0 0 10px rgba(63, 255, 0, 0.8);
 }

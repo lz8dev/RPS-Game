@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Tomorrow&display=swap');
 
 html, body {
-  height: 100%;
+  height: 100vh;
   margin: 0;
   background-color: black;
 }
@@ -20,9 +20,10 @@ body{
   font-family: 'Tomorrow', sans-serif;
   font-size: 4rem;
   justify-content: center;
-  margin-bottom: 2rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
   color: #3FFF00;
-  width: 61rem;
+  width: 100vh;
   padding: 1rem;
   border-radius: 40px;
   border: 1px solid #3fff00;
